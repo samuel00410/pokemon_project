@@ -5,7 +5,6 @@ const registerValidation = require("../validation").registerValidation;
 const loginValidation = require("../validation").loginValidation;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 router.use((req, res, next) => {
   console.log("正在接受一個跟auth有關的請求");
