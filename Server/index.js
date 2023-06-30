@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 const authRoute = require("./routes/auth");
 const pokedexRoute = require("./routes/pokedex-route");
 const passport = require("passport");
-const dotenv = require("dotenv");
-dotenv.config();
 require("./config/passport")(passport);
+const cors = require("cors");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/pokemonDB")
@@ -20,6 +21,7 @@ mongoose
 // 設定Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // 設定routes
 app.use("/api/auth", authRoute); // 只要任何跟 /auth有關的這些route，都要使用authRoutes裡面的這些routes
